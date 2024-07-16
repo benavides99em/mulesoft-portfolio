@@ -1,0 +1,10 @@
+http:
+  port: "8081"
+  path: "/api/characters"
+  
+httprequest:
+  host: "swapi.dev"
+  
+autodiscovery:
+  id: "19720620"
+  
