@@ -1,7 +1,7 @@
-# sps-prueba-técnica
-Repositorio con el proyecto de Mule 4, especificación RAML y colección de Postman.
+# mulesoft-portfolio
+Repository with the Mule 4 project, RAML specification, and Postman collection.
 
-## Detalles
-- Se incluye proyecto de Mule 4 con la especificación RAML, los flujos implementados, manejo de errores, configuraciones globales y archivo de propiedades.
-- Se incluye colección de Postman con llamadas al Mocking Service de exchange y a la implementación desplegada en Cloud Hub y protegida por el API Manager con política de Basic Authentication.
-- Se incluye repositorio público de exchange para consultar API. (https://anypoint.mulesoft.com/exchange/portals/casa-soprano-9/)
+## Details
+- Includes Mule 4 project with RAML specification, implemented flows, error handling, global configurations, and properties file.
+- Includes Postman collection with calls to the Exchange Mocking Service and the implementation deployed on CloudHub, protected by the API Manager with Basic Authentication policy.
+- Includes public Exchange repository for API consultation. (https://anypoint.mulesoft.com/exchange/portals/casa-soprano-9/)”
