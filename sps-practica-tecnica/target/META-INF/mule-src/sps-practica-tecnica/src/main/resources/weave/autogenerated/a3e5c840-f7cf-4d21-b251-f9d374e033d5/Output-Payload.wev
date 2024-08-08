@@ -1,9 +1,0 @@
-%dw 2.0
-
-type auto_a3e5c840_f7cf_4d21_b251_f9d374e033d5_Output_Payload = {|
-  code: String, 
-  message: String | Null, 
-  detail: String | Null, 
-  timestamp: DateTime
-|}
-
