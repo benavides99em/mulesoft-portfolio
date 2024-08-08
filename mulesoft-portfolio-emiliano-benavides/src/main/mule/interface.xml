@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+    <apikit:config name="swapi-request-config" api="resource::7e7a83ee-8d26-4c88-b13a-d9d9a40a758f:swapi-request:1.0.0:raml:zip:swapi-request.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <flow name="swapi-request-main">
+        <http:listener config-ref="HTTP_Listener_config" path="${http.path}">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:router config-ref="swapi-request-config" />
+        <error-handler>
+            <on-error-propagate type="APIKIT:BAD_REQUEST">
+                <set-variable value="400" doc:name="httpStatus" doc:id="cf1538bc-dfbd-4dc4-9af5-1d71c6ceea4f" variableName="httpStatus" />
+                <flow-ref doc:name="errorFlow" doc:id="05f065d7-2e65-4192-92d0-c6d7691bd270" name="errorFlow" />
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_FOUND">
+                <set-variable value="404" doc:name="httpStatus" doc:id="bb1d29cb-3491-4af2-acb9-d20d0168a6af" variableName="httpStatus" />
+                <flow-ref doc:name="errorFlow" doc:id="dd005ff7-8cc0-43a8-99c9-dfa340314ef2" name="errorFlow" />
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:METHOD_NOT_ALLOWED">
+                <set-variable value="405" doc:name="httpStatus" doc:id="d84fbbc4-b822-409a-96b4-860231a35278" variableName="httpStatus" />
+                <flow-ref doc:name="errorFlow" doc:id="1735f0e7-34cb-441d-a0e0-06908d0ab25d" name="errorFlow" />
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_ACCEPTABLE">
+                <set-variable value="406" doc:name="httpStatus" doc:id="93dfacfe-45ff-4402-b62e-fe232f1cba35" variableName="httpStatus" />
+                <flow-ref doc:name="errorFlow" doc:id="63fad27a-dfb7-492d-b284-576e7ad5fe97" name="errorFlow" />
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+                <set-variable value="415" doc:name="httpStatus" doc:id="d94a8653-497b-4f08-92c7-9dd7c8043178" variableName="httpStatus" />
+                <flow-ref doc:name="errorFlow" doc:id="16200de9-abc2-41e0-b931-494528f961a3" name="errorFlow" />
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_IMPLEMENTED">
+                <set-variable value="501" doc:name="httpStatus" doc:id="0dcc9cf5-52c6-48b1-990e-d38b217affa6" variableName="httpStatus" />
+                <flow-ref doc:name="errorFlow" doc:id="a152ebd5-afe4-442e-8808-b8b27f0d1e8a" name="errorFlow" />
+            </on-error-propagate>
+        </error-handler>
+    </flow>
+    <flow name="get:\characters:swapi-request-config">
+        <flow-ref doc:name="Flow Reference" doc:id="37f08075-7574-4405-b5d2-12db60551dd9" name="mainFlow" />
+    </flow>
+</mule>
