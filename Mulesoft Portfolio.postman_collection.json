@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "58fa3a77-4866-48f5-bf4b-0e87704f4a22",
+		"name": "Mulesoft Portfolio",
+		"description": "Coleccíon de Postman para practica SPS. Incluye peticion al Mocking Service de Exchange, y a Cloud Hub con politica de basic authentication.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37008548"
+	},
+	"item": [
+		{
+			"name": "Mocking Service",
+			"item": [
+				{
+					"name": "Mock request csv",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/csv",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/7e7a83ee-8d26-4c88-b13a-d9d9a40a758f/swapi-request/1.0.0/m/characters?gender=male",
+							"protocol": "https",
+							"host": [
+								"anypoint",
+								"mulesoft",
+								"com"
+							],
+							"path": [
+								"mocking",
+								"api",
+								"v1",
+								"sources",
+								"exchange",
+								"assets",
+								"7e7a83ee-8d26-4c88-b13a-d9d9a40a758f",
+								"swapi-request",
+								"1.0.0",
+								"m",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "male"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mock request json",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/7e7a83ee-8d26-4c88-b13a-d9d9a40a758f/swapi-request/1.0.0/m/characters?gender=male",
+							"protocol": "https",
+							"host": [
+								"anypoint",
+								"mulesoft",
+								"com"
+							],
+							"path": [
+								"mocking",
+								"api",
+								"v1",
+								"sources",
+								"exchange",
+								"assets",
+								"7e7a83ee-8d26-4c88-b13a-d9d9a40a758f",
+								"swapi-request",
+								"1.0.0",
+								"m",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "male"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CloudHub",
+			"item": [
+				{
+					"name": "API request json",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "MulePortfolio",
+								"password": "Password"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://mulesoft-portfolio-emiliano-benavides.us-e2.cloudhub.io/api/characters?gender=female",
+							"protocol": "http",
+							"host": [
+								"mulesoft-portfolio-emiliano-benavides",
+								"us-e2",
+								"cloudhub",
+								"io"
+							],
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "female"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API request csv",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "Password",
+								"username": "MulePortfolio"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/csv",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://mulesoft-portfolio-emiliano-benavides.us-e2.cloudhub.io/api/characters?gender=female",
+							"protocol": "http",
+							"host": [
+								"mulesoft-portfolio-emiliano-benavides",
+								"us-e2",
+								"cloudhub",
+								"io"
+							],
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": "female"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API request no query Params",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "Password",
+								"username": "MulePortfolio"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "http://mulesoft-portfolio-emiliano-benavides.us-e2.cloudhub.io/api/characters"
+					},
+					"response": []
+				},
+				{
+					"name": "API request no Auth",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "http://mulesoft-portfolio-emiliano-benavides.us-e2.cloudhub.io/api/characters"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
